@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <record id="br_connector_database_view_form" model="ir.ui.view">
+        <field name="name">br_connector_database.view_form</field>
+        <field name="model">br_connector.database</field>
+        <field name="arch" type="xml">
+            <form string="Database">
+                <sheet>
+                  <group>
+                      <group>
+                        <field name="name" required="1"/>
+                        <field name="database_uid" required="1"/>
+                        <field name="database_port" required="1"/>
+                      </group>
+                      <group>
+                        <field name="database_host" required="1"/>
+                        <field name="database_passwd" required="1" password="True"/>
+                      </group>
+                  </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+  <record id="br_connector_database_view_tree" model="ir.ui.view">
+      <field name="name">br_connector_database.view_tree</field>
+      <field name="model">br_connector.database</field>
+      <field name="arch" type="xml">
+          <tree string="Database" editable="bottom">
+              <field name="name" required="1"/>
+              <field name="database_host" required="1"/>
+              <field name="database_port" required="1"/>
+              <field name="database_uid" required="1"/>
+              <field name="database_passwd" required="1" password="True"/>
+              <button name="action_test_connection" type="object" string="Test Connection" class="btn btn-sm btn-success"/>
+          </tree>
+      </field>
+  </record>
+
+  <record id="br_connector_database_action" model="ir.actions.act_window">
+      <field name="name">BR Database</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">br_connector.database</field>
+      <field name="view_mode">tree</field>
+      <field name="target">new</field>
+  </record>
+
+
+    <record id="br_connector_database_list_action" model="ir.actions.act_window">
+      <field name="name">BR Database</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">br_connector.database</field>
+      <field name="view_mode">tree,form</field>
+  </record>
+
+
+
+  <!-- This Menu Item must have a parent and an action -->
+  <menuitem id="br_connector_database_menu"
+            name="BR Database"
+            parent="base.menu_custom"
+            action="br_connector_database_list_action"
+            sequence="99"/>
+</odoo>
